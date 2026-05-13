@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Studies — Pratik Mistry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#fafaf8;
+  --cream-mid:#f4f4f1;
+  --stone:#e2ded8;
+  --border-c:#e0dbd4;
+  --ink:#1a1a1c;
+  --ink-2:#3d3d40;
+  --ink-3:#646468;
+  --ink-4:#999;
+  --ink-5:#c4c0ba;
+  --serif:'Libre Baskerville',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+  --border:0.5px solid var(--border-c);
+  --nav-h:64px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:16px;line-height:1.6}
+::selection{background:#e0dbd4;color:var(--ink)}
+
+/* CURSOR */
+@media(hover:hover){
+  body{cursor:none}
+  #cur{width:8px;height:8px;background:var(--ink);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:multiply}
+  #cur.h{width:40px;height:40px;background:rgba(26,26,28,.07)}
+  a,button,.wc{cursor:none}
+}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:rgba(250,250,248,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 48px;z-index:100;transition:box-shadow .3s}
+nav.sc{box-shadow:0 1px 20px rgba(0,0,0,.05)}
+.nl{font-family:var(--serif);font-size:15px;font-weight:400;color:var(--ink);text-decoration:none;letter-spacing:.01em}
+.nr{display:flex;align-items:center;gap:32px}
+.nr ul{display:flex;gap:28px;list-style:none}
+.nr a{font-size:13px;font-weight:400;color:var(--ink-4);text-decoration:none;letter-spacing:.04em;transition:color .2s;position:relative}
+.nr a.current{color:var(--ink)}
+.nr a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:.5px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.nr a.current::after,.nr a:hover::after{transform:scaleX(1)}
+.nr a:hover{color:var(--ink)}
+.avail{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-3)}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:#5a9e6f;animation:pd 2.4s ease-in-out infinite;flex-shrink:0}
+@keyframes pd{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.8)}}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hbg span{display:block;width:22px;height:.5px;background:var(--ink);transition:all .3s ease}
+.mob{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--cream);border-bottom:var(--border);padding:20px 28px;z-index:99;flex-direction:column;opacity:0;transform:translateY(-6px);transition:opacity .22s,transform .22s}
+.mob.open{opacity:1;transform:translateY(0)}
+.mob a{font-size:16px;font-weight:300;color:var(--ink-3);text-decoration:none;padding:14px 0;border-bottom:var(--border);transition:color .2s}
+.mob a:last-child{border-bottom:none}
+.mob a:hover{color:var(--ink)}
+
+/* SHARED */
+section{border-bottom:var(--border)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}
+
+/* PAGE HEADER */
+.page-header{padding-top:var(--nav-h);border-bottom:var(--border)}
+.ph-inner{padding:64px 48px 48px;border-top:var(--border)}
+.ph-breadcrumb{font-size:11px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-4);margin-bottom:20px}
+.ph-breadcrumb a{color:var(--ink-4);text-decoration:none;transition:color .2s}
+.ph-breadcrumb a:hover{color:var(--ink)}
+.ph-breadcrumb span{margin:0 8px;color:var(--ink-5)}
+.ph-title{font-family:var(--serif);font-size:clamp(38px,5vw,60px);font-weight:400;letter-spacing:-.015em;line-height:1.05;color:var(--ink)}
+.ph-title em{font-style:italic}
+.ph-sub{font-size:15px;font-weight:300;color:var(--ink-3);margin-top:16px;line-height:1.7;max-width:480px}
+
+/* FILTER BAR */
+.filter-bar{display:flex;align-items:center;gap:0;padding:0 48px;border-bottom:var(--border);overflow-x:auto;scrollbar-width:none}
+.filter-bar::-webkit-scrollbar{display:none}
+.fb-btn{font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4);padding:16px 20px;border-right:var(--border);background:none;border-top:none;border-bottom:none;border-left:none;cursor:pointer;font-family:var(--sans);transition:color .2s;white-space:nowrap}
+.fb-btn:first-child{padding-left:0}
+.fb-btn:hover{color:var(--ink)}
+.fb-btn.on{color:var(--ink);font-weight:500}
+.fb-count{font-size:10px;color:var(--ink-5);margin-left:5px}
+
+/* WORK LIST */
+.wgrid{display:flex;flex-direction:column}
+.wc{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  border-bottom:var(--border);
+  cursor:pointer;position:relative;
+  text-decoration:none;color:inherit;
+  transition:background .25s ease;
+  min-height:380px;
+}
+.wc:last-child{border-bottom:none}
+.wc:hover{background:#f7f6f3}
+/* alternating layout */
+.wc:nth-child(even) .wc-body{order:2;border-right:none;border-left:var(--border)}
+.wc:nth-child(even) .wc-cover{order:1}
+/* text side */
+.wc-body{padding:52px 52px;display:flex;flex-direction:column;justify-content:space-between;border-right:var(--border)}
+.wc-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:20px}
+.wc-idx{font-family:var(--serif);font-size:13px;font-style:italic;color:var(--ink-5)}
+.wc-tags{display:flex;gap:7px;flex-wrap:wrap}
+.wc-tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);border:var(--border);padding:4px 9px}
+.wc-title{font-family:var(--serif);font-size:clamp(22px,2.2vw,30px);font-weight:400;line-height:1.2;margin-bottom:8px;color:var(--ink)}
+.wc-role{font-size:12px;font-weight:400;color:var(--ink-4);letter-spacing:.05em;text-transform:uppercase;margin-bottom:16px}
+.wc-desc{font-size:14px;font-weight:300;color:var(--ink-3);line-height:1.8}
+.wc-bottom{display:flex;flex-direction:column;gap:12px;margin-top:28px}
+.wc-outcome{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:400;color:var(--ink-3);background:var(--cream-mid);border:var(--border);padding:6px 12px;width:fit-content}
+.wc-outcome-dot{width:6px;height:6px;border-radius:50%;background:#5a9e6f;flex-shrink:0}
+.wc-skills{display:flex;flex-wrap:wrap;gap:0}
+.wc-skill{font-size:12px;font-weight:300;color:var(--ink-4)}
+.wc-skill::after{content:' · '}
+.wc-skill:last-child::after{content:''}
+/* cover */
+.wc-cover{position:relative;overflow:hidden;background:var(--cream-mid);display:flex;align-items:center;justify-content:center}
+.wc-cover img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform .55s ease}
+.wc:hover .wc-cover img{transform:scale(1.04)}
+.wc-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:48px;background:var(--cream-mid);position:relative}
+.wc-placeholder::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--border-c) 1px,transparent 1px),linear-gradient(90deg,var(--border-c) 1px,transparent 1px);background-size:48px 48px;opacity:.5}
+.wc-ph-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center}
+.wc-ph-num{font-family:var(--serif);font-size:72px;font-style:italic;font-weight:400;color:var(--stone);line-height:1;letter-spacing:-.02em}
+.wc-ph-label{font-size:11px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-5)}
+.wc-ph-sub{font-size:11px;font-weight:300;color:var(--ink-5);opacity:.8}
+.wc-ph-add{display:inline-flex;align-items:center;gap:6px;font-size:10px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4);border:var(--border);padding:6px 12px;margin-top:4px;background:var(--cream);transition:color .2s,border-color .2s}
+.wc:hover .wc-ph-add{color:var(--ink);border-color:var(--ink)}
+.wc-arrow{position:absolute;bottom:20px;right:24px;font-size:16px;color:var(--ink-5);transition:transform .3s,color .3s;z-index:1}
+.wc:hover .wc-arrow{transform:translate(3px,-3px);color:var(--ink-2)}
+
+/* NDA CARD */
+.nda-card{
+  display:grid;grid-template-columns:1fr 1fr;
+  border-bottom:var(--border);min-height:200px;
+}
+.nda-card:last-child{border-bottom:none}
+.nda-body{padding:44px 52px;display:flex;flex-direction:column;justify-content:center;border-right:var(--border)}
+.nda-label{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-5);margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.nda-lock{width:14px;height:14px;color:var(--ink-5)}
+.nda-title{font-family:var(--serif);font-size:22px;font-weight:400;color:var(--ink-3);margin-bottom:8px;font-style:italic}
+.nda-desc{font-size:13px;font-weight:300;color:var(--ink-4);line-height:1.7;max-width:340px}
+.nda-cta{display:inline-flex;align-items:center;gap:7px;font-size:11px;font-weight:400;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;margin-top:16px;border-bottom:.5px solid var(--border-c);padding-bottom:1px;width:fit-content;transition:color .2s,border-color .2s}
+.nda-cta:hover{color:var(--ink);border-bottom-color:var(--ink)}
+.nda-cover{background:var(--cream-mid);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.nda-cover::before{content:'';position:absolute;inset:0;background-image:linear-gradient(var(--border-c) 1px,transparent 1px),linear-gradient(90deg,var(--border-c) 1px,transparent 1px);background-size:48px 48px;opacity:.4}
+.nda-cover-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center}
+.nda-cover-icon{width:44px;height:44px;border-radius:50%;border:var(--border);display:flex;align-items:center;justify-content:center;background:var(--cream);color:var(--ink-5)}
+.nda-cover-text{font-size:10px;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-5)}
+
+/* FOOTER */
+footer{padding:20px 48px;background:var(--cream-mid);display:flex;align-items:center;justify-content:space-between}
+.ft-name{font-family:var(--serif);font-size:14px;font-style:italic;color:var(--ink-4)}
+.ft-links{display:flex;gap:20px}
+.ft-links a{font-size:11px;font-weight:300;color:var(--ink-4);text-decoration:none;letter-spacing:.07em;text-transform:uppercase;transition:color .2s}
+.ft-links a:hover{color:var(--ink)}
+.ft-copy{font-size:11px;color:var(--ink-5)}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  nav{padding:0 24px}
+  .nr ul,.avail{display:none}
+  .hbg{display:flex}
+  .mob{display:flex}
+  .ph-inner{padding:48px 24px 36px}
+  .filter-bar{padding:0 24px}
+  .wc{grid-template-columns:1fr;min-height:unset}
+  .wc-body{border-right:none;border-left:none!important;padding:32px 24px;order:1!important}
+  .wc-cover{min-height:260px;border-top:var(--border);order:2!important}
+  .nda-card{grid-template-columns:1fr}
+  .nda-body{border-right:none;border-bottom:var(--border);padding:32px 24px}
+  .nda-cover{min-height:140px}
+  footer{flex-direction:column;gap:10px;text-align:center;padding:16px 24px}
+  .ft-links{flex-wrap:wrap;justify-content:center}
+}
+@media(max-width:540px){
+  .ph-title{font-size:clamp(32px,10vw,48px)}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nl" href="index.html">Pratik Mistry</a>
+  <div class="nr">
+    <ul>
+      <li><a href="case-studies.html" class="current">Case Studies</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="avail"><div class="avail-dot"></div><span>Available · Mumbai</span></div>
+  </div>
+  <button class="hbg" id="hbg" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mob" id="mob">
+  <a href="case-studies.html" class="ml">Case Studies</a>
+  <a href="index.html#skills" class="ml">Skills</a>
+  <a href="about.html" class="ml">About</a>
+  <a href="index.html#contact" class="ml">Contact</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="ph-inner reveal">
+    <div class="ph-breadcrumb"><a href="index.html">Home</a><span>/</span>Case Studies</div>
+    <h1 class="ph-title">Case <em>Studies</em></h1>
+    <p class="ph-sub">8 years of fintech design at NIUM — payments, compliance, design systems, and more.</p>
+  </div>
+</div>
+
+<!-- FILTER BAR -->
+<div class="filter-bar reveal">
+  <button class="fb-btn on" data-filter="all">All <span class="fb-count">6</span></button>
+  <button class="fb-btn" data-filter="payments">Payments</button>
+  <button class="fb-btn" data-filter="systems">Design Systems</button>
+  <button class="fb-btn" data-filter="compliance">Compliance</button>
+  <button class="fb-btn" data-filter="dashboard">Dashboard</button>
+</div>
+
+<!-- WORK GRID -->
+<section id="work">
+  <div class="wgrid">
+
+    <!-- 1 -->
+    <a class="wc reveal" href="#">
+      <div class="wc-body">
+        <div>
+          <div class="wc-top">
+            <span class="wc-idx">i.</span>
+            <div class="wc-tags"><span class="wc-tag">Payments</span><span class="wc-tag">B2B</span></div>
+          </div>
+          <div class="wc-title">Remittance UX Redesign</div>
+          <div class="wc-role">Lead Designer · NIUM · 2021–2022</div>
+          <div class="wc-desc">Cross-border payment flows were failing under the weight of compliance rules, multi-currency edge cases, and users operating across 100+ jurisdictions. I redesigned the end-to-end flow — from initiation to confirmation — making complexity invisible to the people who matter most.</div>
+        </div>
+        <div class="wc-bottom">
+          <div class="wc-outcome"><div class="wc-outcome-dot"></div>Reduced average task completion time. Support tickets down.</div>
+          <div class="wc-skills"><span class="wc-skill">Discovery</span><span class="wc-skill">User Research</span><span class="wc-skill">Interaction Design</span><span class="wc-skill">Usability Testing</span><span class="wc-skill">Figma</span></div>
+        </div>
+      </div>
+      <div class="wc-cover">
+        <div class="wc-placeholder">
+          <div class="wc-ph-inner">
+            <div class="wc-ph-num">i.</div>
+            <div class="wc-ph-label">Case study cover</div>
+            <div class="wc-ph-sub">Remittance UX Redesign</div>
+            <div class="wc-ph-add"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Add cover image</div>
+          </div>
+        </div>
+        <span class="wc-arrow">↗</span>
+      </div>
+    </a>
+
+    <!-- 2 -->
+    <a class="wc reveal d1" href="#">
+      <div class="wc-body">
+        <div>
+          <div class="wc-top">
+            <span class="wc-idx">ii.</span>
+            <div class="wc-tags"><span class="wc-tag">Design Systems</span></div>
+          </div>
+          <div class="wc-title">NIUM Design System — Built from Zero</div>
+          <div class="wc-role">Sole Owner · NIUM · 2019–Present</div>
+          <div class="wc-desc">NIUM had no shared design language. Every squad was building its own components, creating inconsistency at scale. I built the design system from the ground up: tokens, components, interaction patterns, accessibility standards, and the contribution model other teams now build on.</div>
+        </div>
+        <div class="wc-bottom">
+          <div class="wc-outcome"><div class="wc-outcome-dot"></div>Adopted across all product squads. WCAG AA compliant throughout.</div>
+          <div class="wc-skills"><span class="wc-skill">Design Tokens</span><span class="wc-skill">Component Library</span><span class="wc-skill">Accessibility (WCAG)</span><span class="wc-skill">Figma</span></div>
+        </div>
+      </div>
+      <div class="wc-cover">
+        <div class="wc-placeholder">
+          <div class="wc-ph-inner">
+            <div class="wc-ph-num">ii.</div>
+            <div class="wc-ph-label">Case study cover</div>
+            <div class="wc-ph-sub">NIUM Design System</div>
+            <div class="wc-ph-add"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Add cover image</div>
+          </div>
+        </div>
+        <span class="wc-arrow">↗</span>
+      </div>
+    </a>
+
+    <!-- 3 -->
+    <a class="wc reveal" href="#">
+      <div class="wc-body">
+        <div>
+          <div class="wc-top">
+            <span class="wc-idx">iii.</span>
+            <div class="wc-tags"><span class="wc-tag">Compliance</span><span class="wc-tag">Onboarding</span></div>
+          </div>
+          <div class="wc-title">KYC Onboarding Flow</div>
+          <div class="wc-role">Lead Designer · NIUM · 2020–2021</div>
+          <div class="wc-desc">For B2B clients, onboarding meant navigating document uploads, identity verification, and regulatory checks across different jurisdictions. I redesigned the flow to feel less like bureaucracy and more like a product — clear progress, plain language, no surprises.</div>
+        </div>
+        <div class="wc-bottom">
+          <div class="wc-outcome"><div class="wc-outcome-dot"></div>Improved completion rates. Reduced time-to-active for new clients.</div>
+          <div class="wc-skills"><span class="wc-skill">UX Research</span><span class="wc-skill">Service Design</span><span class="wc-skill">Usability Testing</span><span class="wc-skill">Content Design</span></div>
+        </div>
+      </div>
+      <div class="wc-cover">
+        <div class="wc-placeholder">
+          <div class="wc-ph-inner">
+            <div class="wc-ph-num">iii.</div>
+            <div class="wc-ph-label">Case study cover</div>
+            <div class="wc-ph-sub">KYC Onboarding Flow</div>
+            <div class="wc-ph-add"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Add cover image</div>
+          </div>
+        </div>
+        <span class="wc-arrow">↗</span>
+      </div>
+    </a>
+
+    <!-- 4 -->
+    <a class="wc reveal d1" href="#">
+      <div class="wc-body">
+        <div>
+          <div class="wc-top">
+            <span class="wc-idx">iv.</span>
+            <div class="wc-tags"><span class="wc-tag">Dashboard</span><span class="wc-tag">Card Issuance</span></div>
+          </div>
+          <div class="wc-title">Card Issuance Management Dashboard</div>
+          <div class="wc-role">Lead Designer · NIUM · 2022–2023</div>
+          <div class="wc-desc">NIUM's card issuance product lets businesses issue physical and virtual cards at scale. I designed the management dashboard to handle complex data hierarchies, spend controls, and real-time transaction monitoring — without overwhelming the people responsible for it.</div>
+        </div>
+        <div class="wc-bottom">
+          <div class="wc-outcome"><div class="wc-outcome-dot"></div>Shipped to enterprise clients. Positive reception in post-launch research.</div>
+          <div class="wc-skills"><span class="wc-skill">Dashboard Design</span><span class="wc-skill">Data Hierarchy</span><span class="wc-skill">Interaction Design</span><span class="wc-skill">Stakeholder Presentations</span></div>
+        </div>
+      </div>
+      <div class="wc-cover">
+        <div class="wc-placeholder">
+          <div class="wc-ph-inner">
+            <div class="wc-ph-num">iv.</div>
+            <div class="wc-ph-label">Case study cover</div>
+            <div class="wc-ph-sub">Card Issuance Dashboard</div>
+            <div class="wc-ph-add"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Add cover image</div>
+          </div>
+        </div>
+        <span class="wc-arrow">↗</span>
+      </div>
+    </a>
+
+    <!-- 5 -->
+    <a class="wc reveal" href="#">
+      <div class="wc-body">
+        <div>
+          <div class="wc-top">
+            <span class="wc-idx">v.</span>
+            <div class="wc-tags"><span class="wc-tag">Payments</span><span class="wc-tag">FX</span></div>
+          </div>
+          <div class="wc-title">FX Rate Display and Conversion UX</div>
+          <div class="wc-role">Lead Designer · NIUM · 2023–2024</div>
+          <div class="wc-desc">Currency conversion is inherently anxiety-inducing — rates change, fees are hidden, and users lose trust fast. I redesigned NIUM's FX display to make rates transparent, timing clear, and the conversion step feel confident rather than uncertain.</div>
+        </div>
+        <div class="wc-bottom">
+          <div class="wc-outcome"><div class="wc-outcome-dot"></div>Increased conversion completion. Reduced FX-related support queries.</div>
+          <div class="wc-skills"><span class="wc-skill">User Research</span><span class="wc-skill">Interaction Design</span><span class="wc-skill">Content Design</span><span class="wc-skill">Figma</span></div>
+        </div>
+      </div>
+      <div class="wc-cover">
+        <div class="wc-placeholder">
+          <div class="wc-ph-inner">
+            <div class="wc-ph-num">v.</div>
+            <div class="wc-ph-label">Case study cover</div>
+            <div class="wc-ph-sub">FX Rate and Conversion UX</div>
+            <div class="wc-ph-add"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>Add cover image</div>
+          </div>
+        </div>
+        <span class="wc-arrow">↗</span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<!-- NDA SECTION -->
+<section id="nda">
+  <div style="padding:28px 48px 24px;border-bottom:var(--border)" class="reveal">
+    <span style="font-family:var(--serif);font-size:13px;font-style:italic;color:var(--ink-4);">Protected work</span>
+  </div>
+
+  <div class="nda-card reveal">
+    <div class="nda-body">
+      <div class="nda-label">
+        <svg class="nda-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        NDA Protected
+      </div>
+      <div class="nda-title">Additional NIUM projects available on request</div>
+      <div class="nda-desc">Several case studies from 2018–2024 are under NDA. These include mobile wallet UX, B2B client portal redesigns, and internal tooling. Happy to walk through them in a conversation.</div>
+      <a class="nda-cta" href="mailto:pratikmistry88@gmail.com">
+        Request access
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+    </div>
+    <div class="nda-cover">
+      <div class="nda-cover-inner">
+        <div class="nda-cover-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+        <div class="nda-cover-text">Available under NDA</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-name">Pratik Mistry</div>
+  <div class="ft-links">
+    <a href="index.html">Home</a>
+    <a href="case-studies.html">Case Studies</a>
+    <a href="about.html">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <div class="ft-copy">Mumbai · 2025</div>
+</footer>
+
+<script>
+const cur=document.getElementById('cur');
+if(cur&&window.matchMedia('(hover:hover)').matches){
+  document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+  document.querySelectorAll('a,button,.wc').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('h'));el.addEventListener('mouseleave',()=>cur.classList.remove('h'))});
+}
+const navEl=document.getElementById('nav');
+window.addEventListener('scroll',()=>navEl.classList.toggle('sc',scrollY>20),{passive:true});
+const hbg=document.getElementById('hbg'),mob=document.getElementById('mob');
+let open=false;
+hbg.addEventListener('click',()=>{
+  open=!open;mob.style.display='flex';
+  requestAnimationFrame(()=>mob.classList.toggle('open',open));
+  const s=hbg.querySelectorAll('span');
+  if(open){s[0].style.transform='translateY(5.5px) rotate(45deg)';s[1].style.opacity='0';s[2].style.transform='translateY(-5.5px) rotate(-45deg)'}
+  else{s[0].style.transform=s[2].style.transform='';s[1].style.opacity='1'}
+});
+document.querySelectorAll('.ml').forEach(l=>l.addEventListener('click',()=>{open=false;mob.classList.remove('open');const s=hbg.querySelectorAll('span');s[0].style.transform=s[2].style.transform='';s[1].style.opacity='1'}));
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -28px 0px'});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+// Filter
+document.querySelectorAll('.fb-btn').forEach(btn=>{
+  btn.addEventListener('click',()=>{
+    document.querySelectorAll('.fb-btn').forEach(b=>b.classList.remove('on'));
+    btn.classList.add('on');
+    // placeholder for future filter logic
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About — Pratik Mistry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --cream:#fafaf8;
+  --cream-mid:#f4f4f1;
+  --stone:#e2ded8;
+  --border-c:#e0dbd4;
+  --ink:#1a1a1c;
+  --ink-2:#3d3d40;
+  --ink-3:#646468;
+  --ink-4:#999;
+  --ink-5:#c4c0ba;
+  --serif:'Libre Baskerville',Georgia,serif;
+  --sans:'DM Sans',sans-serif;
+  --border:0.5px solid var(--border-c);
+  --nav-h:64px;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--cream);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;font-size:16px;line-height:1.6}
+::selection{background:#e0dbd4;color:var(--ink)}
+
+/* CURSOR */
+@media(hover:hover){
+  body{cursor:none}
+  #cur{width:8px;height:8px;background:var(--ink);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s;mix-blend-mode:multiply}
+  #cur.h{width:40px;height:40px;background:rgba(26,26,28,.07)}
+  a,button{cursor:none}
+}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;height:var(--nav-h);background:rgba(250,250,248,.94);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 48px;z-index:100;transition:box-shadow .3s}
+nav.sc{box-shadow:0 1px 20px rgba(0,0,0,.05)}
+.nl{font-family:var(--serif);font-size:15px;font-weight:400;color:var(--ink);text-decoration:none;letter-spacing:.01em}
+.nr{display:flex;align-items:center;gap:32px}
+.nr ul{display:flex;gap:28px;list-style:none}
+.nr a{font-size:13px;font-weight:400;color:var(--ink-4);text-decoration:none;letter-spacing:.04em;transition:color .2s;position:relative}
+.nr a.current{color:var(--ink)}
+.nr a::after{content:'';position:absolute;bottom:-2px;left:0;right:0;height:.5px;background:var(--ink);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.nr a.current::after{transform:scaleX(1)}
+.nr a:hover{color:var(--ink)}
+.nr a:hover::after{transform:scaleX(1)}
+.avail{display:flex;align-items:center;gap:7px;font-size:12px;color:var(--ink-3)}
+.avail-dot{width:7px;height:7px;border-radius:50%;background:#5a9e6f;animation:pd 2.4s ease-in-out infinite;flex-shrink:0}
+@keyframes pd{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.45;transform:scale(.8)}}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hbg span{display:block;width:22px;height:.5px;background:var(--ink);transition:all .3s ease}
+.mob{display:none;position:fixed;top:var(--nav-h);left:0;right:0;background:var(--cream);border-bottom:var(--border);padding:20px 28px;z-index:99;flex-direction:column;opacity:0;transform:translateY(-6px);transition:opacity .22s,transform .22s}
+.mob.open{opacity:1;transform:translateY(0)}
+.mob a{font-size:16px;font-weight:300;color:var(--ink-3);text-decoration:none;padding:14px 0;border-bottom:var(--border);transition:color .2s}
+.mob a:last-child{border-bottom:none}
+.mob a:hover{color:var(--ink)}
+
+/* SHARED */
+section{border-bottom:var(--border)}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+
+/* PAGE HEADER */
+.page-header{padding-top:var(--nav-h);border-bottom:var(--border)}
+.ph-inner{padding:64px 48px 48px;border-top:var(--border)}
+.ph-breadcrumb{font-size:11px;font-weight:400;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-4);margin-bottom:20px}
+.ph-breadcrumb a{color:var(--ink-4);text-decoration:none;transition:color .2s}
+.ph-breadcrumb a:hover{color:var(--ink)}
+.ph-breadcrumb span{margin:0 8px;color:var(--ink-5)}
+.ph-title{font-family:var(--serif);font-size:clamp(38px,5vw,60px);font-weight:400;letter-spacing:-.015em;line-height:1.05;color:var(--ink)}
+.ph-title em{font-style:italic}
+.ph-sub{font-size:15px;font-weight:300;color:var(--ink-3);margin-top:16px;line-height:1.7;max-width:480px}
+
+/* STORY SECTION */
+#story{}
+.story-inner{display:grid;grid-template-columns:1fr 1fr}
+.story-left{padding:56px 48px;border-right:var(--border)}
+.story-right{padding:56px 48px}
+.section-label{font-size:10px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4);margin-bottom:24px;padding-bottom:14px;border-bottom:var(--border)}
+.story-quote{font-family:var(--serif);font-size:20px;font-style:italic;font-weight:400;line-height:1.7;color:var(--ink-2);margin-bottom:28px;padding-left:20px;border-left:1.5px solid var(--stone)}
+.body-text{font-size:15px;font-weight:300;color:var(--ink-3);line-height:1.85;margin-bottom:18px}
+.body-text strong{font-weight:500;color:var(--ink-2)}
+.body-text:last-child{margin-bottom:0}
+
+/* WHAT I BELIEVE */
+#beliefs{}
+.beliefs-inner{display:grid;grid-template-columns:1fr 1fr 1fr}
+.belief{padding:44px 40px;border-right:var(--border)}
+.belief:last-child{border-right:none}
+.belief-n{font-family:var(--serif);font-size:36px;font-style:italic;font-weight:400;color:var(--ink-5);line-height:1;margin-bottom:20px}
+.belief-title{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:10px;line-height:1.3}
+.belief-body{font-size:14px;font-weight:300;color:var(--ink-3);line-height:1.8}
+
+/* HOW I WORK */
+#working{}
+.working-inner{display:grid;grid-template-columns:360px 1fr}
+.working-left{padding:52px 48px;border-right:var(--border)}
+.working-right{padding:0}
+.w-item{padding:30px 48px;border-bottom:var(--border);display:grid;grid-template-columns:24px 1fr;gap:20px;align-items:start;transition:background .2s}
+.w-item:last-child{border-bottom:none}
+.w-item:hover{background:var(--cream-mid)}
+.w-item-icon{font-family:var(--serif);font-size:14px;font-style:italic;color:var(--ink-5);padding-top:2px}
+.w-item-title{font-size:15px;font-weight:500;color:var(--ink);margin-bottom:7px;line-height:1.3}
+.w-item-body{font-size:14px;font-weight:300;color:var(--ink-3);line-height:1.8}
+
+/* EXPERIENCE */
+#experience{}
+.exp-inner{display:grid;grid-template-columns:1fr 1fr}
+.exp-col{padding:52px 48px}
+.exp-col:first-child{border-right:var(--border)}
+.exp-item{padding:22px 0;border-bottom:var(--border)}
+.exp-item:first-child{padding-top:0}
+.exp-item:last-child{border-bottom:none;padding-bottom:0}
+.exp-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:4px}
+.exp-co{font-size:15px;font-weight:500;color:var(--ink)}
+.exp-period{font-family:var(--serif);font-size:12px;font-style:italic;color:var(--ink-4);white-space:nowrap;flex-shrink:0}
+.exp-role{font-size:13px;font-weight:300;color:var(--ink-4);margin-bottom:8px}
+.exp-desc{font-size:14px;font-weight:300;color:var(--ink-3);line-height:1.7}
+.exp-tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:10px}
+.exp-tag{font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4);border:var(--border);padding:3px 8px}
+
+/* EDUCATION + CERTS */
+.edu-item{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;padding:18px 0;border-bottom:var(--border)}
+.edu-item:first-child{padding-top:0}
+.edu-item:last-child{border-bottom:none;padding-bottom:0}
+.edu-deg{font-size:15px;font-weight:400;color:var(--ink);font-family:var(--serif);line-height:1.3}
+.edu-inst{font-size:12px;font-weight:300;color:var(--ink-4);margin-top:3px}
+.edu-year{font-family:var(--serif);font-size:12px;font-style:italic;color:var(--ink-4);white-space:nowrap;flex-shrink:0}
+
+/* CONTACT STRIP */
+#contact-strip{background:var(--cream-mid)}
+.cs-inner{padding:56px 48px;display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap}
+.cs-left{}
+.cs-label{font-size:10px;font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-4);margin-bottom:10px}
+.cs-heading{font-family:var(--serif);font-size:clamp(22px,3vw,32px);font-weight:400;line-height:1.15;color:var(--ink)}
+.cs-heading em{font-style:italic}
+.cs-links{display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.cl{font-size:12px;font-weight:400;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-3);text-decoration:none;display:flex;align-items:center;gap:7px;transition:color .2s;padding-bottom:2px;border-bottom:.5px solid var(--border-c)}
+.cl:hover{color:var(--ink);border-bottom-color:var(--ink)}
+
+/* FOOTER */
+footer{padding:20px 48px;background:var(--cream-mid);border-top:var(--border);display:flex;align-items:center;justify-content:space-between}
+.ft-name{font-family:var(--serif);font-size:14px;font-style:italic;color:var(--ink-4)}
+.ft-links{display:flex;gap:20px}
+.ft-links a{font-size:11px;font-weight:300;color:var(--ink-4);text-decoration:none;letter-spacing:.07em;text-transform:uppercase;transition:color .2s}
+.ft-links a:hover{color:var(--ink)}
+.ft-copy{font-size:11px;color:var(--ink-5)}
+
+/* RESPONSIVE */
+@media(max-width:960px){
+  nav{padding:0 24px}
+  .nr ul,.avail{display:none}
+  .hbg{display:flex}
+  .mob{display:flex}
+  .ph-inner{padding:48px 24px 36px}
+  .story-inner{grid-template-columns:1fr}
+  .story-left{border-right:none;border-bottom:var(--border);padding:40px 24px}
+  .story-right{padding:40px 24px}
+  .beliefs-inner{grid-template-columns:1fr}
+  .belief{border-right:none;border-bottom:var(--border);padding:32px 24px}
+  .belief:last-child{border-bottom:none}
+  .working-inner{grid-template-columns:1fr}
+  .working-left{border-right:none;border-bottom:var(--border);padding:40px 24px}
+  .w-item{padding:24px}
+  .exp-inner{grid-template-columns:1fr}
+  .exp-col:first-child{border-right:none;border-bottom:var(--border)}
+  .exp-col{padding:36px 24px}
+  .cs-inner{flex-direction:column;align-items:flex-start;padding:40px 24px}
+  .cs-links{flex-direction:column;gap:12px}
+  footer{flex-direction:column;gap:10px;text-align:center;padding:16px 24px}
+  .ft-links{flex-wrap:wrap;justify-content:center}
+}
+@media(max-width:540px){
+  .ph-title{font-size:clamp(32px,10vw,48px)}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a class="nl" href="index.html">Pratik Mistry</a>
+  <div class="nr">
+    <ul>
+      <li><a href="case-studies.html">Case Studies</a></li>
+      <li><a href="index.html#skills">Skills</a></li>
+      <li><a href="about.html" class="current">About</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <div class="avail"><div class="avail-dot"></div><span>Available · Mumbai</span></div>
+  </div>
+  <button class="hbg" id="hbg" aria-label="Open menu"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="mob" id="mob">
+  <a href="case-studies.html" class="ml">Case Studies</a>
+  <a href="index.html#skills" class="ml">Skills</a>
+  <a href="about.html" class="ml">About</a>
+  <a href="index.html#contact" class="ml">Contact</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+  <div class="ph-inner reveal">
+    <div class="ph-breadcrumb"><a href="index.html">Home</a><span>/</span>About</div>
+    <h1 class="ph-title">About <em>Pratik</em></h1>
+    <p class="ph-sub">Senior Product Designer. 10 years in the craft. 8 years in fintech. Based in Mumbai, India.</p>
+  </div>
+</div>
+
+<!-- STORY -->
+<section id="story">
+  <div class="story-left reveal" style="padding:56px 48px;max-width:720px">
+    <div class="section-label">The story</div>
+    <blockquote class="story-quote">I didn't start in fintech.<br>I started in animation.</blockquote>
+    <p class="body-text">Somewhere between turning 3D renders into brand stories and crafting motion graphics for fast-moving agencies, I discovered what I really loved: <strong>making complex things feel simple.</strong></p>
+    <p class="body-text">That led me to product design — and eventually to NIUM, where I've spent the last 8 years designing financial tools used by businesses across the globe. Whether it's a cross-border payment dashboard or a high-stakes compliance flow, my job is the same: take something intimidating and make it feel obvious.</p>
+    <p class="body-text">I work end-to-end. From the first user interview to the final developer handoff — I stay close to the problem, close to the people, and don't step away until the thing ships well.</p>
+  </div>
+</section>
+
+<!-- EXPERIENCE + EDUCATION -->
+<section id="experience">
+  <div style="padding:30px 48px 26px;border-bottom:var(--border)" class="reveal">
+    <span style="font-family:var(--serif);font-size:13px;font-style:italic;color:var(--ink-4);">Experience and education</span>
+  </div>
+  <div class="exp-inner">
+    <div class="exp-col reveal">
+      <div class="section-label" style="margin-bottom:28px">Career</div>
+
+      <div class="exp-item">
+        <div class="exp-top"><span class="exp-co">NIUM</span><span class="exp-period">Apr 2018 – Present</span></div>
+        <div class="exp-role">Senior Product Designer · Global B2B Payments Platform</div>
+        <div class="exp-desc">Owned design end-to-end across remittance, card issuance, FX, compliance, and onboarding for customers across 100+ countries. Built the design system from scratch. Set org-wide design standards and ran design reviews. Ran independent user research and usability testing. Presented design strategy to C-suite stakeholders.</div>
+        <div class="exp-tags"><span class="exp-tag">Fintech</span><span class="exp-tag">Design Systems</span><span class="exp-tag">User Research</span><span class="exp-tag">WCAG</span></div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-top"><span class="exp-co">Triature Pvt. Ltd.</span><span class="exp-period">Oct 2016 – Apr 2018</span></div>
+        <div class="exp-role">Senior Visualiser and Creative Designer</div>
+        <div class="exp-desc">Led creative direction on multi-channel campaigns from concept through delivery. Translated complex briefs into visual stories across digital, print, and brand work.</div>
+        <div class="exp-tags"><span class="exp-tag">Creative Direction</span><span class="exp-tag">Brand</span><span class="exp-tag">Digital</span></div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-top"><span class="exp-co">Gozoop</span><span class="exp-period">Oct 2015 – Sep 2016</span></div>
+        <div class="exp-role">Graphic Designer · Digital Marketing Agency</div>
+        <div class="exp-desc">Social media campaigns, animated content, and digital storytelling for brand clients in a high-output studio environment.</div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-top"><span class="exp-co">8848 Sports Pvt. Ltd.</span><span class="exp-period">Sep 2013 – Aug 2015</span></div>
+        <div class="exp-role">Graphic Designer</div>
+        <div class="exp-desc">Brand identity, merchandise, and marketing collateral for sports clients. Coordinated design workflow and guided interns.</div>
+      </div>
+
+      <div class="exp-item">
+        <div class="exp-top"><span class="exp-co">Cosmos Studio</span><span class="exp-period">Apr 2013 – Aug 2013</span></div>
+        <div class="exp-role">Junior Graphic Designer · 3D Interior and Exterior Design</div>
+        <div class="exp-desc">First design role. 3D visualisation and spatial renders using Autodesk 3ds Max. Collaborated with strategy team on visual direction.</div>
+      </div>
+
+    </div>
+    <div class="exp-col reveal d2">
+      <div class="section-label" style="margin-bottom:28px">Education and certifications</div>
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-deg">B.Sc Multimedia and Animation</div>
+          <div class="edu-inst">Arena Multimedia</div>
+        </div>
+        <div class="edu-year">2010–2013</div>
+      </div>
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-deg">UX Deep Dive: Usability Testing</div>
+          <div class="edu-inst">Professional Certification</div>
+        </div>
+        <div class="edu-year">Cert.</div>
+      </div>
+
+      <div class="edu-item">
+        <div>
+          <div class="edu-deg">Figma to Lottie</div>
+          <div class="edu-inst">Motion Design Certification</div>
+        </div>
+        <div class="edu-year">Cert.</div>
+      </div>
+
+      <!-- Currently reading / interested in — adds human dimension -->
+      <div style="margin-top:40px">
+        <div class="section-label" style="margin-bottom:20px">Currently interested in</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <div style="font-size:14px;font-weight:300;color:var(--ink-3);line-height:1.7;padding:16px 0;border-bottom:var(--border)">AI's role in financial UX and how trust dynamics change when a human is removed from a decision flow.</div>
+          <div style="font-size:14px;font-weight:300;color:var(--ink-3);line-height:1.7;padding:16px 0;border-bottom:var(--border)">Designing for emerging markets — where financial literacy, device constraints, and connectivity vary wildly.</div>
+          <div style="font-size:14px;font-weight:300;color:var(--ink-3);line-height:1.7;padding:16px 0;border-bottom:var(--border)">The intersection of motion design and microinteractions in complex data products.</div>
+          <div style="font-size:14px;font-weight:300;color:var(--ink-3);line-height:1.7;padding:16px 0">How design systems evolve at scale — contribution models, versioning, and the politics of shared design.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT STRIP -->
+<section id="contact-strip">
+  <div class="cs-inner reveal">
+    <div class="cs-left">
+      <div class="cs-label">Get in touch</div>
+      <h2 class="cs-heading">If the work <em>feels right,</em><br>reach out.</h2>
+    </div>
+    <div class="cs-links">
+      <a class="cl" href="mailto:pratikmistry88@gmail.com">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+        pratikmistry88@gmail.com
+      </a>
+      <a class="cl" href="https://linkedin.com/in/pratik-mistry-49aa0693" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="3"/><path d="M7 10v7M7 7v.01M12 17v-4c0-1.1.9-2 2-2s2 .9 2 2v4M12 10v7"/></svg>
+        LinkedIn
+      </a>
+      <a class="cl" href="case-studies.html">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M2 12h20M15 5l7 7-7 7"/></svg>
+        View case studies
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ft-name">Pratik Mistry</div>
+  <div class="ft-links">
+    <a href="case-studies.html">Case Studies</a>
+    <a href="index.html#skills">Skills</a>
+    <a href="about.html">About</a>
+    <a href="index.html#contact">Contact</a>
+  </div>
+  <div class="ft-copy">Mumbai · 2025</div>
+</footer>
+
+<script>
+const cur=document.getElementById('cur');
+if(cur&&window.matchMedia('(hover:hover)').matches){
+  document.addEventListener('mousemove',e=>{cur.style.left=e.clientX+'px';cur.style.top=e.clientY+'px'});
+  document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>cur.classList.add('h'));el.addEventListener('mouseleave',()=>cur.classList.remove('h'))});
+}
+const navEl=document.getElementById('nav');
+window.addEventListener('scroll',()=>navEl.classList.toggle('sc',scrollY>20),{passive:true});
+const hbg=document.getElementById('hbg'),mob=document.getElementById('mob');
+let open=false;
+hbg.addEventListener('click',()=>{
+  open=!open;mob.style.display='flex';
+  requestAnimationFrame(()=>mob.classList.toggle('open',open));
+  const s=hbg.querySelectorAll('span');
+  if(open){s[0].style.transform='translateY(5.5px) rotate(45deg)';s[1].style.opacity='0';s[2].style.transform='translateY(-5.5px) rotate(-45deg)'}
+  else{s[0].style.transform=s[2].style.transform='';s[1].style.opacity='1'}
+});
+document.querySelectorAll('.ml').forEach(l=>l.addEventListener('click',()=>{open=false;mob.classList.remove('open');const s=hbg.querySelectorAll('span');s[0].style.transform=s[2].style.transform='';s[1].style.opacity='1'}));
+const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}})},{threshold:0.1,rootMargin:'0px 0px -28px 0px'});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+</script>
+</body>
+</html>
